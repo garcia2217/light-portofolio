@@ -1,0 +1,1466 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Premium Developer Portfolio | High-End Template</title>
+
+    <!-- Google Fonts: Playfair Display (Editorial/Halo Effect) & JetBrains Mono (Technical/Clarity) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* ==========================================================================
+           1. VISUAL IDENTITY & CSS VARIABLES (The Halo Effect)
+           ========================================================================== */
+      :root {
+        --bg-deep-charcoal: #121212;
+        --bg-surface: #1e1e1e;
+        --accent-electric-teal: #00d1ff;
+        --accent-electric-teal-glow: rgba(0, 209, 255, 0.2);
+        --text-primary: #ffffff;
+        --text-secondary: #a0a0a0;
+        --text-muted: #666666;
+
+        --font-display: "Playfair Display", serif;
+        --font-mono: "JetBrains Mono", monospace;
+
+        --transition-smooth: 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        --transition-bounce: 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      /* Base Resets for Cognitive Friction Reduction */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        background-color: var(--bg-deep-charcoal);
+        color: var(--text-primary);
+        font-size: 16px;
+      }
+
+      body {
+        font-family: var(--font-mono);
+        line-height: 1.6;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      /* Typography Hierarchy */
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: var(--font-display);
+        font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+      }
+
+      h1 {
+        font-size: clamp(3rem, 6vw, 5.5rem);
+        letter-spacing: -0.02em;
+      }
+      h2 {
+        font-size: clamp(2.5rem, 4vw, 3.5rem);
+        margin-bottom: 2rem;
+        position: relative;
+      }
+      h3 {
+        font-size: 1.5rem;
+      }
+
+      p {
+        font-family: var(--font-mono);
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+        max-width: 65ch;
+      }
+
+      a {
+        color: var(--text-primary);
+        text-decoration: none;
+        transition: color var(--transition-smooth);
+      }
+
+      .highlight {
+        color: var(--accent-electric-teal);
+      }
+      .mono-tag {
+        color: var(--accent-electric-teal);
+        font-size: 0.8rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+
+      /* Container Setup */
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      section {
+        padding: 8rem 0;
+      }
+
+      /* ==========================================================================
+           2. NAVIGATION (Sticky Header, Shrink on Scroll, Underline-Draw)
+           ========================================================================== */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 2rem 0;
+        z-index: 100;
+        transition: all var(--transition-smooth);
+        background: transparent;
+        backdrop-filter: blur(0px);
+      }
+
+      header.scrolled {
+        padding: 1rem 0;
+        background: rgba(18, 18, 18, 0.9);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .nav-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-family: var(--font-display);
+        font-size: 1.5rem;
+        font-weight: 900;
+        color: var(--text-primary);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2.5rem;
+        list-style: none;
+      }
+
+      .nav-links a {
+        font-size: 0.9rem;
+        position: relative;
+        padding-bottom: 0.25rem;
+      }
+
+      /* Underline-Draw Affordance */
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: var(--accent-electric-teal);
+        transform: scaleX(0);
+        transform-origin: bottom right;
+        transition: transform 0.3s cubic-bezier(0.86, 0, 0.07, 1);
+      }
+
+      .nav-links a:hover::after {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+      }
+
+      /* Mobile Menu Toggle (Hidden on Desktop) */
+      .mobile-toggle {
+        display: none;
+        background: none;
+        border: none;
+        color: var(--text-primary);
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+
+      /* ==========================================================================
+           3. HERO SECTION (Asymmetric, Fast Typing, Primacy Effect)
+           ========================================================================== */
+      #hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding-top: 6rem;
+        position: relative;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 3fr 2fr;
+        gap: 4rem;
+        align-items: center;
+      }
+
+      /* Hero Reveal Animation */
+      .hero-content {
+        opacity: 0;
+        transform: translateY(30px);
+        animation: heroReveal 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        animation-delay: 0.2s;
+      }
+
+      @keyframes heroReveal {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .hero-subtitle {
+        font-size: 1.1rem;
+        color: var(--text-secondary);
+        margin-bottom: 2rem;
+        max-width: 500px;
+      }
+
+      /* Fast Typing Effect */
+      .typing-container {
+        display: inline-flex;
+        align-items: center;
+        min-height: 1.5em; /* Prevent layout shift */
+      }
+
+      .typing-text {
+        color: var(--accent-electric-teal);
+        border-right: 2px solid var(--accent-electric-teal);
+        padding-right: 5px;
+        white-space: nowrap;
+        overflow: hidden;
+        animation: blinkCursor 0.75s step-end infinite;
+      }
+
+      @keyframes blinkCursor {
+        from,
+        to {
+          border-color: transparent;
+        }
+        50% {
+          border-color: var(--accent-electric-teal);
+        }
+      }
+
+      .cta-group {
+        display: flex;
+        gap: 1.5rem;
+        margin-top: 3rem;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem 2rem;
+        font-family: var(--font-mono);
+        font-size: 0.9rem;
+        font-weight: 500;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all var(--transition-bounce);
+      }
+
+      .btn-primary {
+        background-color: var(--accent-electric-teal);
+        color: var(--bg-deep-charcoal);
+        border: 1px solid var(--accent-electric-teal);
+      }
+
+      .btn-primary:hover {
+        background-color: transparent;
+        color: var(--accent-electric-teal);
+        box-shadow: 0 0 20px var(--accent-electric-teal-glow);
+        transform: translateY(-2px);
+      }
+
+      .btn-secondary {
+        background-color: transparent;
+        color: var(--text-primary);
+        border: 1px solid var(--text-muted);
+      }
+
+      .btn-secondary:hover {
+        border-color: var(--text-primary);
+        transform: translateY(-2px);
+      }
+
+      /* Zeigarnik Effect: Scroll Indicator */
+      .scroll-indicator {
+        position: absolute;
+        bottom: 3rem;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        opacity: 0.5;
+        transition: opacity var(--transition-smooth);
+        animation: bounce 2s infinite cubic-bezier(0.445, 0.05, 0.55, 0.95);
+        text-decoration: none;
+      }
+
+      .scroll-indicator:hover {
+        opacity: 1;
+      }
+
+      .scroll-indicator span {
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .mouse {
+        width: 24px;
+        height: 36px;
+        border: 2px solid var(--text-secondary);
+        border-radius: 12px;
+        position: relative;
+      }
+
+      .wheel {
+        width: 4px;
+        height: 6px;
+        background-color: var(--accent-electric-teal);
+        border-radius: 2px;
+        position: absolute;
+        top: 6px;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: scrollWheel 2s infinite;
+      }
+
+      @keyframes scrollWheel {
+        0% {
+          transform: translate(-50%, 0);
+          opacity: 1;
+        }
+        100% {
+          transform: translate(-50%, 15px);
+          opacity: 0;
+        }
+      }
+
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateY(0) translateX(-50%);
+        }
+        40% {
+          transform: translateY(-10px) translateX(-50%);
+        }
+        60% {
+          transform: translateY(-5px) translateX(-50%);
+        }
+      }
+
+      /* ==========================================================================
+           4. ABOUT SECTION (Split Screen, Parallax)
+           ========================================================================== */
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+        align-items: center;
+      }
+
+      .about-text p {
+        margin-bottom: 1.5rem;
+        font-size: 1rem;
+      }
+
+      .about-visual {
+        position: relative;
+        height: 100%;
+        min-height: 400px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        perspective: 1000px;
+      }
+
+      /* Subtle Parallax Element */
+      .parallax-shape {
+        width: 300px;
+        height: 400px;
+        border: 1px solid rgba(0, 209, 255, 0.3);
+        border-radius: 8px;
+        position: relative;
+        transform-style: preserve-3d;
+        transition: transform 0.1s ease-out;
+        background: linear-gradient(
+          135deg,
+          rgba(30, 30, 30, 0.8) 0%,
+          rgba(18, 18, 18, 0.2) 100%
+        );
+        backdrop-filter: blur(5px);
+        box-shadow: 20px 20px 60px rgba(0, 0, 0, 0.5);
+      }
+
+      .parallax-shape::before {
+        content: "";
+        position: absolute;
+        top: -20px;
+        left: -20px;
+        right: 20px;
+        bottom: 20px;
+        border: 1px solid var(--text-muted);
+        border-radius: 8px;
+        transform: translateZ(-50px);
+        opacity: 0.5;
+      }
+
+      /* ==========================================================================
+           5. TECH STACK (Validation, Reduced Cognitive Load)
+           ========================================================================== */
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 3rem;
+        margin-top: 3rem;
+      }
+
+      .skill-category h3 {
+        font-family: var(--font-mono);
+        font-size: 1.1rem;
+        color: var(--text-primary);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 1rem;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .skill-category ul {
+        list-style: none;
+      }
+
+      .skill-category li {
+        color: var(--text-secondary);
+        margin-bottom: 0.8rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .skill-category li::before {
+        content: "▹";
+        color: var(--accent-electric-teal);
+        font-size: 1.2rem;
+        line-height: 1;
+      }
+
+      /* ==========================================================================
+           6. FEATURED PROJECTS (Climax, 2-Col Grid, Soft Shadow Bloom)
+           ========================================================================== */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+        gap: 3rem;
+        margin-top: 4rem;
+      }
+
+      .project-card {
+        background-color: var(--bg-surface);
+        border-radius: 12px;
+        overflow: hidden;
+        position: relative;
+        transition: all var(--transition-smooth);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      /* Lift & Glow Affordance */
+      .project-card:hover {
+        transform: translateY(-8px);
+        box-shadow:
+          0 20px 40px rgba(0, 0, 0, 0.6),
+          0 0 20px var(--accent-electric-teal-glow);
+        border-color: rgba(0, 209, 255, 0.3);
+      }
+
+      .project-image-wrapper {
+        height: 250px;
+        background-color: #2a2a2a; /* Placeholder bg */
+        position: relative;
+        overflow: hidden;
+      }
+
+      .project-image-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+        opacity: 0.7;
+        filter: grayscale(100%) contrast(1.2);
+      }
+
+      .project-card:hover .project-image-wrapper img {
+        transform: scale(1.05);
+        filter: grayscale(0%) contrast(1);
+        opacity: 1;
+      }
+
+      .project-content {
+        padding: 2rem;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .project-content h3 {
+        margin-bottom: 0.5rem;
+        font-size: 1.8rem;
+      }
+
+      .project-tech {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: auto;
+        padding-top: 1.5rem;
+      }
+
+      .project-tech span {
+        font-size: 0.8rem;
+        color: var(--accent-electric-teal);
+        background: rgba(0, 209, 255, 0.05);
+        padding: 0.2rem 0.6rem;
+        border-radius: 4px;
+      }
+
+      /* Problem/Solution Micro-summary Hover Overlay */
+      .project-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(18, 18, 18, 0.95);
+        backdrop-filter: blur(4px);
+        padding: 3rem 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        pointer-events: none; /* Let clicks pass to card */
+      }
+
+      .project-card:hover .project-overlay {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+
+      .overlay-block {
+        margin-bottom: 1.5rem;
+      }
+
+      .overlay-block h4 {
+        font-family: var(--font-mono);
+        font-size: 0.85rem;
+        color: var(--accent-electric-teal);
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .project-links {
+        display: flex;
+        gap: 1rem;
+        margin-top: auto;
+      }
+
+      .project-links a {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+
+      .project-links a:hover {
+        color: var(--accent-electric-teal);
+      }
+
+      /* ==========================================================================
+           7. EXPERIENCE (Social Proof, High Contrast Timeline)
+           ========================================================================== */
+      .timeline {
+        max-width: 800px;
+        margin: 4rem auto 0;
+        position: relative;
+      }
+
+      /* Timeline vertical line */
+      .timeline::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 140px; /* Space for dates */
+        width: 2px;
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .timeline-item {
+        position: relative;
+        margin-bottom: 4rem;
+        display: flex;
+        gap: 3rem;
+      }
+
+      .timeline-item:last-child {
+        margin-bottom: 0;
+      }
+
+      .timeline-date {
+        width: 110px;
+        text-align: right;
+        font-family: var(--font-mono);
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        padding-top: 0.25rem;
+        flex-shrink: 0;
+      }
+
+      /* Timeline Dot */
+      .timeline-dot {
+        position: absolute;
+        left: 135px; /* Aligned with line */
+        top: 0.5rem;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--bg-deep-charcoal);
+        border: 2px solid var(--accent-electric-teal);
+        z-index: 2;
+        transition: all var(--transition-bounce);
+      }
+
+      .timeline-item:hover .timeline-dot {
+        background: var(--accent-electric-teal);
+        box-shadow: 0 0 15px var(--accent-electric-teal-glow);
+        transform: scale(1.2);
+      }
+
+      .timeline-content {
+        background: var(--bg-surface);
+        padding: 2rem;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.02);
+        flex-grow: 1;
+        transition:
+          transform var(--transition-smooth),
+          border-color var(--transition-smooth);
+      }
+
+      .timeline-item:hover .timeline-content {
+        transform: translateX(5px);
+        border-color: rgba(0, 209, 255, 0.1);
+      }
+
+      .timeline-content h3 {
+        margin-bottom: 0.25rem;
+        color: var(--text-primary);
+      }
+
+      .timeline-company {
+        font-family: var(--font-mono);
+        color: var(--accent-electric-teal);
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+        display: block;
+      }
+
+      /* ==========================================================================
+           8. CONTACT (Frictionless, Minimal)
+           ========================================================================== */
+      #contact {
+        text-align: center;
+        padding-bottom: 12rem; /* Extra breathing room at end */
+      }
+
+      #contact p {
+        margin: 0 auto 3rem;
+      }
+
+      .contact-email {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 5vw, 4rem);
+        font-weight: 700;
+        color: var(--text-primary);
+        position: relative;
+        display: inline-block;
+      }
+
+      .contact-email::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 4px;
+        bottom: 10px;
+        left: 0;
+        background-color: var(--accent-electric-teal);
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+        z-index: -1;
+      }
+
+      .contact-email:hover::after {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+
+      footer {
+        text-align: center;
+        padding: 2rem 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        color: var(--text-muted);
+      }
+
+      /* ==========================================================================
+           9. SCROLL TRIGGERED REVEALS (Neuro-design Animation)
+           ========================================================================== */
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition:
+          opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1),
+          transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        will-change: opacity, transform;
+      }
+
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Staggered delays for child elements if needed */
+      .reveal.active .stagger-1 {
+        transition-delay: 0.1s;
+      }
+      .reveal.active .stagger-2 {
+        transition-delay: 0.2s;
+      }
+      .reveal.active .stagger-3 {
+        transition-delay: 0.3s;
+      }
+
+      /* ==========================================================================
+           10. RESPONSIVE DESIGN (Mobile-First approach via media queries down)
+           ========================================================================== */
+      @media (max-width: 992px) {
+        .hero-grid,
+        .about-grid {
+          grid-template-columns: 1fr;
+          gap: 3rem;
+        }
+        .hero-content {
+          text-align: center;
+        }
+        .hero-subtitle {
+          margin: 0 auto 2rem;
+        }
+        .cta-group {
+          justify-content: center;
+        }
+        .about-visual {
+          min-height: 300px;
+        }
+        .timeline::before {
+          left: 0;
+        }
+        .timeline-item {
+          flex-direction: column;
+          gap: 1rem;
+          padding-left: 2rem;
+        }
+        .timeline-date {
+          text-align: left;
+          width: auto;
+        }
+        .timeline-dot {
+          left: -6px;
+          top: 0;
+        }
+        .projects-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        section {
+          padding: 5rem 0;
+        }
+        .nav-links {
+          display: none; /* Hide for simple mobile view, could add hamburger logic */
+        }
+        .mobile-toggle {
+          display: block;
+        }
+        .project-content {
+          padding: 1.5rem;
+        }
+        .project-overlay {
+          padding: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Sticky Header -->
+    <header id="header">
+      <div class="container nav-inner">
+        <a href="#" class="logo">E.D.</a>
+        <nav>
+          <ul class="nav-links">
+            <li><a href="#about">01. About</a></li>
+            <li><a href="#skills">02. Expertise</a></li>
+            <li><a href="#projects">03. Work</a></li>
+            <li><a href="#experience">04. Experience</a></li>
+            <li><a href="#contact">05. Contact</a></li>
+          </ul>
+          <button class="mobile-toggle">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section id="hero">
+        <div class="container hero-grid">
+          <div class="hero-content">
+            <span class="mono-tag">Hello, I'm Ethan Davis</span>
+            <h1>
+              Building <br /><span class="highlight typing-container"
+                ><span class="typing-text"></span
+              ></span>
+              <br />Experiences.
+            </h1>
+            <p class="hero-subtitle">
+              Senior Frontend Engineer & UI/UX Specialist bridging the gap
+              between exceptional design and robust engineering.
+            </p>
+            <div class="cta-group">
+              <a href="#projects" class="btn btn-primary">View Featured Work</a>
+              <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+            </div>
+          </div>
+          <!-- Optional asymmetric breathing room/abstract element on the right -->
+          <div class="hero-visual"></div>
+        </div>
+
+        <a href="#about" class="scroll-indicator" aria-label="Scroll down">
+          <div class="mouse">
+            <div class="wheel"></div>
+          </div>
+          <span>Scroll</span>
+        </a>
+      </section>
+
+      <!-- About Section -->
+      <section id="about" class="reveal">
+        <div class="container about-grid">
+          <div class="about-text">
+            <span class="mono-tag">01. The Narrative</span>
+            <h2>Engineering with Empathy.</h2>
+            <p>
+              I specialize in creating high-performance, accessible, and deeply
+              interactive web applications. With over 7 years of experience
+              scaling frontend architectures, my focus is always on reducing
+              cognitive load for both the end-user and the developer team
+              maintaining the codebase.
+            </p>
+            <p>
+              My philosophy is simple: complex problems shouldn't require
+              complex interfaces. I thrive at the intersection of psychology and
+              code, ensuring every pixel serves a purpose and every interaction
+              feels inevitably correct.
+            </p>
+          </div>
+          <div class="about-visual">
+            <!-- Subtle Parallax Shape -->
+            <div class="parallax-shape" id="parallaxShape"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tech Stack Section -->
+      <section id="skills" class="reveal">
+        <div class="container">
+          <span class="mono-tag">02. The Toolkit</span>
+          <h2>Technical Precision.</h2>
+          <div class="skills-grid">
+            <div class="skill-category">
+              <h3>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--accent-electric-teal)"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"
+                  ></path>
+                  <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                  <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                </svg>
+                Frontend Core
+              </h3>
+              <ul>
+                <li>React / Next.js / Vue.js</li>
+                <li>TypeScript & Modern JavaScript</li>
+                <li>HTML5, CSS3, Tailwind, Sass</li>
+                <li>WebGL, Three.js, GSAP</li>
+              </ul>
+            </div>
+            <div class="skill-category">
+              <h3>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--accent-electric-teal)"
+                  stroke-width="2"
+                >
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                  <line x1="8" y1="21" x2="16" y2="21"></line>
+                  <line x1="12" y1="17" x2="12" y2="21"></line>
+                </svg>
+                Backend & API
+              </h3>
+              <ul>
+                <li>Node.js & Express</li>
+                <li>GraphQL & RESTful APIs</li>
+                <li>PostgreSQL & MongoDB</li>
+                <li>Redis Caching Strategies</li>
+              </ul>
+            </div>
+            <div class="skill-category">
+              <h3>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--accent-electric-teal)"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"
+                  ></path>
+                </svg>
+                Tools & Testing
+              </h3>
+              <ul>
+                <li>Jest, Cypress, Playwright</li>
+                <li>Webpack, Vite, CI/CD pipelines</li>
+                <li>Figma (UI/UX Prototyping)</li>
+                <li>AWS, Vercel, Docker</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured Projects Section -->
+      <section id="projects" class="reveal">
+        <div class="container">
+          <span class="mono-tag">03. The Work</span>
+          <h2>Architected Solutions.</h2>
+          <div class="projects-grid">
+            <!-- Project Card 1 -->
+            <div class="project-card">
+              <div class="project-image-wrapper">
+                <!-- Using a placeholder pattern to keep it single-file without external images -->
+                <div
+                  style="
+                    width: 100%;
+                    height: 100%;
+                    background: radial-gradient(
+                      circle at center,
+                      #1e1e1e 0%,
+                      #121212 100%
+                    );
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    opacity: 0.5;
+                  "
+                >
+                  <svg
+                    width="60"
+                    height="60"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="var(--text-muted)"
+                    stroke-width="1"
+                  >
+                    <rect
+                      x="2"
+                      y="3"
+                      width="20"
+                      height="14"
+                      rx="2"
+                      ry="2"
+                    ></rect>
+                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                  </svg>
+                </div>
+              </div>
+              <div class="project-content">
+                <h3>FinTech Dashboard UI</h3>
+                <p>
+                  A high-performance trading dashboard handling thousands of
+                  real-time WebSocket updates.
+                </p>
+                <div class="project-tech">
+                  <span>React</span>
+                  <span>TypeScript</span>
+                  <span>WebSockets</span>
+                  <span>D3.js</span>
+                </div>
+              </div>
+
+              <!-- Hover Overlay (Problem/Solution) -->
+              <div class="project-overlay">
+                <div class="overlay-block">
+                  <h4>The Problem</h4>
+                  <p>
+                    Previous dashboard crashed under high market volatility due
+                    to excessive DOM repaints and state bloat.
+                  </p>
+                </div>
+                <div class="overlay-block">
+                  <h4>The Solution</h4>
+                  <p>
+                    Implemented a custom virtualization engine and memoized
+                    React components, reducing render times by 85% and achieving
+                    a stable 60fps.
+                  </p>
+                </div>
+                <div class="project-links">
+                  <a href="#"
+                    ><svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path
+                        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                      ></path>
+                    </svg>
+                    Code</a
+                  >
+                  <a href="#"
+                    ><svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path
+                        d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                      ></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                    Live Demo</a
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Project Card 2 -->
+            <div class="project-card">
+              <div class="project-image-wrapper">
+                <div
+                  style="
+                    width: 100%;
+                    height: 100%;
+                    background: repeating-linear-gradient(
+                      45deg,
+                      #1e1e1e,
+                      #1e1e1e 10px,
+                      #121212 10px,
+                      #121212 20px
+                    );
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    opacity: 0.3;
+                  "
+                >
+                  <svg
+                    width="60"
+                    height="60"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="var(--text-muted)"
+                    stroke-width="1"
+                  >
+                    <path
+                      d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"
+                    ></path>
+                  </svg>
+                </div>
+              </div>
+              <div class="project-content">
+                <h3>E-Commerce Headless CMS</h3>
+                <p>
+                  A scalable storefront built on Next.js communicating with a
+                  headless Shopify backend.
+                </p>
+                <div class="project-tech">
+                  <span>Next.js</span>
+                  <span>GraphQL</span>
+                  <span>Tailwind</span>
+                  <span>Framer Motion</span>
+                </div>
+              </div>
+
+              <!-- Hover Overlay (Problem/Solution) -->
+              <div class="project-overlay">
+                <div class="overlay-block">
+                  <h4>The Problem</h4>
+                  <p>
+                    Slow load times (LCP > 4s) on the client's legacy monolithic
+                    architecture leading to high bounce rates on mobile.
+                  </p>
+                </div>
+                <div class="overlay-block">
+                  <h4>The Solution</h4>
+                  <p>
+                    Migrated to a statically generated Next.js architecture with
+                    edge caching, achieving a 99 Lighthouse score and boosting
+                    conversion by 22%.
+                  </p>
+                </div>
+                <div class="project-links">
+                  <a href="#"
+                    ><svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path
+                        d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                      ></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                    Case Study</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experience Section -->
+      <section id="experience" class="reveal">
+        <div class="container">
+          <span class="mono-tag">04. The Journey</span>
+          <h2>Professional Trajectory.</h2>
+
+          <div class="timeline">
+            <!-- Timeline Item 1 -->
+            <div class="timeline-item">
+              <div class="timeline-date">2021 — Present</div>
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3>Senior Frontend Engineer</h3>
+                <span class="timeline-company">Acme Tech Corp.</span>
+                <p>
+                  Lead the frontend architecture for the flagship enterprise
+                  product used by Fortune 500 clients. Mentored a team of 6
+                  mid-level engineers, implemented strict CI/CD pipelines, and
+                  drove a company-wide migration to a unified React/TypeScript
+                  design system.
+                </p>
+              </div>
+            </div>
+
+            <!-- Timeline Item 2 -->
+            <div class="timeline-item">
+              <div class="timeline-date">2018 — 2021</div>
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3>UI/UX Developer</h3>
+                <span class="timeline-company">Studio Digital</span>
+                <p>
+                  Bridged the gap between the design team and engineering. Built
+                  award-winning marketing sites and interactive web experiences.
+                  Specialized in complex WebGL animations and optimizing
+                  frontend bundle sizes for rapid delivery.
+                </p>
+              </div>
+            </div>
+
+            <!-- Timeline Item 3 -->
+            <div class="timeline-item">
+              <div class="timeline-date">2016 — 2018</div>
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3>Frontend Developer</h3>
+                <span class="timeline-company">StartUp Inc.</span>
+                <p>
+                  Developed core features for an early-stage SaaS platform.
+                  Championed the adoption of component-driven development and
+                  wrote comprehensive unit tests that reduced production bugs by
+                  40%.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="reveal">
+        <div class="container">
+          <span class="mono-tag">05. What's Next?</span>
+          <h2>Let's build something.</h2>
+          <p>
+            I am currently open to new opportunities. Whether you have a
+            question, a project proposal, or just want to say hi, my inbox is
+            always open.
+          </p>
+          <a href="mailto:hello@ethandavis.dev" class="contact-email"
+            >hello@ethandavis.dev</a
+          >
+
+          <div
+            class="cta-group"
+            style="justify-content: center; margin-top: 4rem"
+          >
+            <a href="#" class="btn btn-secondary">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                style="margin-right: 8px"
+              >
+                <path
+                  d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+                ></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+              LinkedIn
+            </a>
+            <a href="#" class="btn btn-secondary">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                style="margin-right: 8px"
+              >
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                ></path>
+              </svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>Designed & Built by Ethan Davis &copy; 2026</p>
+        <p style="margin-top: 0.5rem; opacity: 0.5">
+          Optimized for cognitive clarity.
+        </p>
+      </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        /* 1. STICKY HEADER SHRINK */
+        const header = document.getElementById("header");
+        window.addEventListener("scroll", () => {
+          if (window.scrollY > 50) {
+            header.classList.add("scrolled");
+          } else {
+            header.classList.remove("scrolled");
+          }
+        });
+
+        /* 2. FAST TYPING EFFECT (Hero Hook) */
+        const phrases = ["Accessible", "Performant", "Intuitive", "Scalable"];
+        let phraseIndex = 0;
+        let letterIndex = 0;
+        let isDeleting = false;
+        let typingSpeed = 100;
+        const typingElement = document.querySelector(".typing-text");
+
+        function typeEffect() {
+          const currentPhrase = phrases[phraseIndex];
+
+          if (isDeleting) {
+            typingElement.textContent = currentPhrase.substring(
+              0,
+              letterIndex - 1,
+            );
+            letterIndex--;
+            typingSpeed = 50; // Faster deletion
+          } else {
+            typingElement.textContent = currentPhrase.substring(
+              0,
+              letterIndex + 1,
+            );
+            letterIndex++;
+            typingSpeed = 120; // Normal typing
+          }
+
+          // Logic for state change
+          if (!isDeleting && letterIndex === currentPhrase.length) {
+            isDeleting = true;
+            typingSpeed = 1500; // Pause at the end of word
+          } else if (isDeleting && letterIndex === 0) {
+            isDeleting = false;
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+            typingSpeed = 500; // Pause before typing next word
+          }
+
+          setTimeout(typeEffect, typingSpeed);
+        }
+        // Init Typing
+        setTimeout(typeEffect, 1000); // Wait for Hero reveal
+
+        /* 3. INTERSECTION OBSERVER (Scroll-Triggered Reveals for Zeigarnik Effect) */
+        const revealElements = document.querySelectorAll(".reveal");
+
+        const revealOptions = {
+          threshold: 0.15, // Trigger when 15% of element is visible
+          rootMargin: "0px 0px -50px 0px", // Slight offset
+        };
+
+        const revealOnScroll = new IntersectionObserver(function (
+          entries,
+          observer,
+        ) {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+
+            // Add active class to trigger CSS animation
+            entry.target.classList.add("active");
+
+            // Unobserve to only animate once
+            observer.unobserve(entry.target);
+          });
+        }, revealOptions);
+
+        revealElements.forEach((el) => revealOnScroll.observe(el));
+
+        /* 4. SUBTLE PARALLAX EFFECT (About Section - Right Side) */
+        const parallaxShape = document.getElementById("parallaxShape");
+        const aboutSection = document.getElementById("about");
+
+        window.addEventListener("mousemove", (e) => {
+          // Only run if about section is somewhat in view to save performance
+          const rect = aboutSection.getBoundingClientRect();
+          if (rect.top < window.innerHeight && rect.bottom > 0) {
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+
+            parallaxShape.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+          }
+        });
+
+        // Reset shape when mouse leaves window
+        document.addEventListener("mouseleave", () => {
+          parallaxShape.style.transform = `rotateY(0deg) rotateX(0deg)`;
+        });
+
+        /* 5. SMOOTH SCROLLING FOR NAV LINKS */
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute("href");
+            const targetElement = document.querySelector(targetId);
+
+            if (targetElement) {
+              // Offset for sticky header
+              const headerOffset = 80;
+              const elementPosition = targetElement.getBoundingClientRect().top;
+              const offsetPosition =
+                elementPosition + window.pageYOffset - headerOffset;
+
+              window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth",
+              });
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
