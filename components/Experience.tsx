@@ -43,7 +43,7 @@ export default function Experience() {
   return (
     <section id="experience" className="bg-bg py-24 md:py-32">
       <div className="container mx-auto px-6 md:px-12 max-w-7xl">
-        <div className="text-sm font-semibold tracking-widest uppercase text-mid mb-4 flex items-center gap-3 before:content-[''] before:w-8 before:h-[2px] before:bg-accent reveal">
+        <div className="font-mono text-sm font-semibold tracking-widest uppercase text-mid mb-4 flex items-center gap-3 before:content-[''] before:w-8 before:h-[2px] before:bg-accent reveal">
           Work history
         </div>
         <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight mb-12 relative inline-block reveal section-title group">
@@ -62,13 +62,13 @@ export default function Experience() {
               {/* Timeline dot */}
               <div className="absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-bg border-4 border-ink transition-colors duration-300 group-hover:bg-accent group-hover:border-accent"></div>
               
-              <div className="text-sm font-bold tracking-widest uppercase text-mid mb-2">
+              <div className="font-mono text-sm font-bold tracking-widest uppercase text-mid mb-2">
                 {exp.date}
               </div>
               <div className="font-serif text-2xl md:text-3xl font-bold tracking-tight text-ink mb-1 group-hover:text-accent transition-colors">
                 {exp.role}
               </div>
-              <div className="text-lg font-semibold text-accent mb-4">
+              <div className="font-mono text-sm font-semibold text-accent mb-4 tracking-wider uppercase">
                 {exp.company}
               </div>
               <ul className="text-base text-ink/70 leading-relaxed space-y-2">

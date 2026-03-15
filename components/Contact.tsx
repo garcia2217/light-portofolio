@@ -6,8 +6,8 @@ export default function Contact() {
         className="bg-ink text-white text-center py-32"
       >
         <div className="container mx-auto px-6 md:px-12 max-w-4xl flex flex-col items-center">
-          <div className="text-sm font-semibold tracking-widest uppercase text-white/50 mb-6 flex items-center justify-center gap-3 before:content-[''] before:w-8 before:h-[2px] before:bg-accent reveal">
-            Get in touch
+          <div className="font-mono text-sm font-semibold tracking-widest uppercase text-white/50 mb-6 flex items-center justify-center gap-3 before:content-[''] before:w-8 before:h-[2px] before:bg-accent reveal">
+            05. What&apos;s Next?
           </div>
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight mb-6 relative inline-block text-white reveal section-title group">
             Let&apos;s build something
@@ -15,15 +15,16 @@ export default function Contact() {
             worth scaling.
             <span className="block h-1 bg-accent w-0 group-[.in-view]:w-full mt-2 transition-all duration-700 ease-out rounded-full mx-auto"></span>
           </h2>
-          <p className="text-lg md:text-xl text-white/60 max-w-2xl mx-auto mt-6 mb-12 leading-relaxed reveal">
+          <p className="text-lg md:text-xl text-white/60 max-w-2xl mx-auto mt-6 mb-16 leading-relaxed reveal">
             Open to senior backend roles, system design consulting, and
             interesting side-project collaborations. I respond within 48 hours.
           </p>
           <a
-            href="mailto:alex@example.com"
-            className="inline-flex items-center gap-2 bg-accent text-white font-sans text-lg font-bold py-4 px-10 rounded shadow-lg transition-all duration-300 hover:bg-accent/90 hover:shadow-accent/40 hover:-translate-y-1 hover:shadow-2xl reveal"
+            href="mailto:hello@emmanuelgarcia.dev"
+            className="font-serif text-[clamp(2rem,5vw,4rem)] font-bold text-white relative inline-block group mb-6 hover:text-white transition-colors reveal z-10"
           >
-            Send me a message &nearr;
+            hello@emmanuelgarcia.dev
+            <span className="absolute -bottom-2 left-0 w-full h-[3px] md:h-[4px] bg-accent scale-x-0 origin-right transition-transform duration-[400ms] ease-[cubic-bezier(0.86,0,0.07,1)] group-hover:scale-x-100 group-hover:origin-left -z-10"></span>
           </a>
           
           <div className="flex flex-wrap justify-center gap-8 mt-20 reveal">

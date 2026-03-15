@@ -11,6 +11,7 @@
   
   --font-serif: var(--font-serif);
   --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
 
   --animate-hero-in: heroIn 0.9s 0.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   --animate-blink: blink 0.9s step-end infinite;

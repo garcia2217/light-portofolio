@@ -47,6 +47,31 @@ export default function Hero() {
     return () => clearTimeout(timeoutId);
   }, []);
 
+  // Count-Up Animation for stat cards
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const counters = document.querySelectorAll<HTMLSpanElement>(".count-up");
+      counters.forEach((counter) => {
+        const target = parseInt(counter.dataset.target ?? "0", 10);
+        const suffix = counter.dataset.suffix ?? "";
+        const duration = 1400;
+        const startTime = performance.now();
+
+        const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
+
+        const update = (currentTime: number) => {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const value = Math.round(easeOut(progress) * target);
+          counter.innerHTML = `${value}<span class="text-accent">${suffix}</span>`;
+          if (progress < 1) requestAnimationFrame(update);
+        };
+        requestAnimationFrame(update);
+      });
+    }, 600);
+    return () => clearTimeout(timer);
+  }, []);
+
   useEffect(() => {
     const wrap = btnWrapRef.current;
     if (!wrap) return;
@@ -84,8 +109,8 @@ export default function Hero() {
     >
       <div className="container mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         {/* Left Content */}
-        <div className="flex flex-col justify-center max-w-2xl">
-          <p className="text-xs md:text-sm font-semibold tracking-widest uppercase text-mid mb-6 flex items-center gap-3 before:content-[''] before:w-8 before:h-[2px] before:bg-accent">
+        <div className="flex flex-col justify-center max-w-2xl relative">
+          <p className="font-mono text-xs md:text-sm font-semibold tracking-widest uppercase text-accent mb-6 flex items-center gap-3 before:content-[''] before:w-8 before:h-[2px] before:bg-accent">
             Available for opportunities
           </p>
           <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[5rem] font-bold leading-[1.05] tracking-tight text-ink mb-6">
@@ -96,7 +121,7 @@ export default function Hero() {
             <br className="hidden sm:block" />
             scale.
           </h1>
-          <p className="text-lg md:text-xl font-light text-mid min-h-[2.5rem] mb-10 flex items-center gap-2">
+          <p className="font-mono text-base md:text-lg font-light text-mid min-h-[2.5rem] mb-10 flex items-center gap-2">
             <span id="typed-text" ref={typedTextRef} className="text-ink font-medium"></span>
             <span className="inline-block w-[3px] h-[1.2em] bg-accent animate-blink rounded-sm"></span>
           </p>
@@ -105,7 +130,7 @@ export default function Hero() {
             <div className="inline-block" ref={btnWrapRef}>
               <button
                 onClick={handleScroll}
-                className="relative inline-flex items-center gap-2 bg-ink text-white font-sans text-sm md:text-base font-medium py-4 px-8 border-none rounded shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl group"
+                className="relative inline-flex items-center gap-2 bg-ink text-white font-sans text-sm md:text-base font-medium py-4 px-8 border-none rounded shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group"
               >
                 <div className="absolute inset-0 bg-accent scale-x-0 origin-left transition-transform duration-500 ease-out group-hover:scale-x-100 z-0"></div>
                 <span className="relative z-10 transition-transform duration-300 group-hover:translate-x-1">
@@ -115,9 +140,10 @@ export default function Hero() {
             </div>
             <a
               href="#contact"
-              className="text-base font-medium text-mid border-b-2 border-ghost pb-1 transition-all hover:text-ink hover:border-ink"
+              className="text-base font-medium text-mid pb-1 relative group transition-colors hover:text-ink inline-block"
             >
               Let&apos;s talk &rarr;
+              <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-ink scale-x-0 origin-right transition-transform duration-300 group-hover:scale-x-100 group-hover:origin-left"></span>
             </a>
           </div>
         </div>
@@ -130,36 +156,44 @@ export default function Hero() {
           {/* Animated Blob */}
           <div className="absolute w-[400px] h-[400px] rounded-full bg-accent/10 blur-3xl animate-pulse-slow"></div>
 
-          {/* Floating Stat Cards */}
+          {/* Floating Stat Cards (Glassmorphic + Count-Up) */}
           <div className="relative w-full max-w-md h-[450px]">
-            <div className="absolute bottom-10 left-0 bg-white/80 backdrop-blur-md border border-white/20 p-6 rounded-2xl shadow-xl transition-transform hover:-translate-y-2 duration-300">
+            <div className="absolute bottom-10 left-0 bg-white/70 backdrop-blur-xl border border-white p-6 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.06)] ring-1 ring-black/5 transition-transform hover:-translate-y-2 duration-300">
               <div className="font-serif text-4xl font-bold text-ink">
-                4<span className="text-accent">+</span>
+                <span className="count-up" data-target="4" data-suffix="+">0</span>
               </div>
-              <div className="text-xs font-semibold text-mid tracking-widest uppercase mt-1">
+              <div className="font-mono text-xs font-semibold text-mid tracking-widest uppercase mt-2">
                 Years Building
               </div>
             </div>
 
-            <div className="absolute top-10 right-0 bg-white/80 backdrop-blur-md border border-white/20 p-6 rounded-2xl shadow-xl transition-transform hover:-translate-y-2 duration-300 delay-100">
+            <div className="absolute top-10 right-0 bg-white/70 backdrop-blur-xl border border-white p-6 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.06)] ring-1 ring-black/5 transition-transform hover:-translate-y-2 duration-300 delay-100">
               <div className="font-serif text-4xl font-bold text-ink">
-                18<span className="text-accent">+</span>
+                <span className="count-up" data-target="18" data-suffix="+">0</span>
               </div>
-              <div className="text-xs font-semibold text-mid tracking-widest uppercase mt-1">
+              <div className="font-mono text-xs font-semibold text-mid tracking-widest uppercase mt-2">
                 Projects Shipped
               </div>
             </div>
 
-            <div className="absolute bottom-24 right-10 bg-white/80 backdrop-blur-md border border-white/20 p-6 rounded-2xl shadow-xl transition-transform hover:-translate-y-2 duration-300 delay-200">
+            <div className="absolute bottom-24 right-10 bg-white/70 backdrop-blur-xl border border-white p-6 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.06)] ring-1 ring-black/5 transition-transform hover:-translate-y-2 duration-300 delay-200">
               <div className="font-serif text-4xl font-bold text-ink">
-                99<span className="text-accent">%</span>
+                <span className="count-up" data-target="99" data-suffix="%">0</span>
               </div>
-              <div className="text-xs font-semibold text-mid tracking-widest uppercase mt-1">
+              <div className="font-mono text-xs font-semibold text-mid tracking-widest uppercase mt-2">
                 Uptime Maintained
               </div>
             </div>
           </div>
         </div>
+      </div>
+      
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50 hover:opacity-100 transition-opacity cursor-pointer animate-bounce">
+        <div className="w-[20px] h-[32px] border-2 border-mid rounded-full relative flex justify-center">
+          <div className="w-[2px] h-[6px] bg-accent rounded-full mt-2 animate-pulse"></div>
+        </div>
+        <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-mid">Scroll</span>
       </div>
     </section>
   );

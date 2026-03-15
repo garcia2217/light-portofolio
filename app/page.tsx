@@ -8,6 +8,7 @@ import Stack from "@/components/Stack";
 import Projects from "@/components/Projects";
 import Experience from "@/components/Experience";
 import Contact from "@/components/Contact";
+import CursorSpotlight from "@/components/CursorSpotlight";
 
 export default function Home() {
   useEffect(() => {
@@ -42,6 +43,7 @@ export default function Home() {
 
   return (
     <main>
+      <CursorSpotlight />
       <Nav />
       <Hero />
       <About />
