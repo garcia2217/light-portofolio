@@ -105,10 +105,8 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="min-h-[100svh] relative flex flex-col opacity-0 animate-hero-in"
+      className="min-h-[100svh] relative flex flex-col opacity-0 animate-hero-in pt-20 lg:pt-24 pb-16"
     >
-      {/* Dynamic top spacer — clears the fixed nav on all screen sizes */}
-      <div className="h-20 sm:h-32 md:h-40 shrink-0" />
       <div className="flex-1 flex flex-col justify-center">
         <div className="container mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
@@ -116,7 +114,7 @@ export default function Hero() {
             <p className="font-mono text-xs md:text-sm font-semibold tracking-widest uppercase text-accent mb-6 flex items-center gap-3 before:content-[''] before:w-8 before:h-[2px] before:bg-accent">
               Available for opportunities
             </p>
-            <h1 className="font-serif text-[2.6rem] sm:text-6xl md:text-7xl lg:text-[5rem] font-bold leading-[1.05] tracking-tight text-ink mb-6">
+            <h1 className="font-serif text-[2.6rem] sm:text-6xl md:text-7xl lg:text-[4rem] xl:text-[5rem] font-bold leading-[1.05] tracking-tight text-ink mb-6">
               Building systems
               <br />
               that{" "}
@@ -157,8 +155,8 @@ export default function Hero() {
 
           {/* Right Content / Visuals */}
           <div className="hidden lg:flex relative h-full min-h-[500px] w-full items-center justify-center overflow-hidden">
-            {/* Background Grid Pattern */}
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]"></div>
+            {/* Background Grid Pattern - smoothly masked so no hard edges */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(50%_50%_at_50%_50%,#000_10%,transparent_100%)]"></div>
 
             {/* Animated Blob */}
             <div className="absolute w-[400px] h-[400px] rounded-full bg-accent/10 blur-3xl animate-pulse-slow"></div>
@@ -202,13 +200,10 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll Indicator — in flow, shrink-0 so flex doesn't crush it */}
+      {/* Scroll Indicator — absolute with safe-area-aware bottom */}
       <div
-        className="shrink-0 flex flex-col items-center gap-2 opacity-50 hover:opacity-100 transition-opacity cursor-pointer animate-bounce"
-        style={{
-          paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 3rem)",
-          marginBottom: "0.5rem",
-        }}
+        className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50 hover:opacity-100 transition-opacity cursor-pointer animate-bounce"
+        style={{ bottom: "calc(env(safe-area-inset-bottom, 0px) + 2rem)" }}
       >
         <div className="w-[20px] h-[32px] border-2 border-mid rounded-full relative flex justify-center">
           <div className="w-[2px] h-[6px] bg-accent rounded-full mt-2 animate-pulse"></div>
