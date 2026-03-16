@@ -49,18 +49,18 @@ function TiltCard({ proj, i }: { proj: Project; i: number }) {
       }}
     >
       {/* Top Accent Bar */}
-      <div className="absolute top-0 inset-x-0 h-1 bg-accent scale-x-0 origin-left transition-transform duration-500 ease-out group-hover:scale-x-100"></div>
+      <div className="absolute top-0 inset-x-0 h-1 bg-accent scale-x-0 origin-left transition-transform duration-500 ease-out group-hover:scale-x-100 group-active:scale-x-100"></div>
 
       {/* Subtle inner glow on hover */}
       <div
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl"
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl"
         style={{ boxShadow: "inset 0 0 40px rgba(0,85,255,0.04)" }}
       ></div>
 
       <div className="font-mono text-xs font-bold tracking-widest uppercase text-accent mb-4 relative z-10">
         {proj.type}
       </div>
-      <h3 className="font-serif text-2xl font-bold tracking-tight leading-tight text-ink mb-4 group-hover:text-accent transition-colors relative z-10">
+      <h3 className="font-serif text-2xl font-bold tracking-tight leading-tight text-ink mb-4 group-hover:text-accent group-active:text-accent transition-colors relative z-10">
         {proj.name}
       </h3>
       <p className="text-base text-ink/70 leading-relaxed mb-8 flex-grow relative z-10">
@@ -160,10 +160,13 @@ export default function Projects() {
   ];
 
   return (
-    <section id="projects" className="bg-white border-y border-ghost py-24 md:py-32">
+    <section
+      id="projects"
+      className="bg-white border-y border-ghost min-h-[100dvh] py-16 md:py-24 flex flex-col justify-center"
+    >
       <div className="container mx-auto px-6 md:px-12 max-w-7xl">
         <div className="font-mono text-sm font-semibold tracking-widest uppercase text-mid mb-4 flex items-center gap-3 before:content-[''] before:w-8 before:h-[2px] before:bg-accent reveal">
-          Selected work
+          03. Selected work
         </div>
         <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight mb-8 relative inline-block reveal section-title group">
           Problems solved,

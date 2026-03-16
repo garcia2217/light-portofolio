@@ -4,7 +4,7 @@ const AvatarCanvas = dynamic(() => import("./AvatarCanvas"), { ssr: false });
 
 export default function About() {
   return (
-    <section id="about" className="bg-white border-y border-ghost py-24 md:py-32">
+    <section id="about" className="bg-white border-y border-ghost min-h-[100dvh] py-16 md:py-24 flex flex-col justify-center">
       <div className="container mx-auto px-6 md:px-12 max-w-7xl">
         <div className="font-mono text-sm font-semibold tracking-widest uppercase text-mid mb-4 flex items-center gap-3 before:content-[''] before:w-8 before:h-[2px] before:bg-accent reveal">
           01. The Narrative
@@ -18,13 +18,16 @@ export default function About() {
         
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-12 lg:gap-20 items-start mt-12">
           {/* 3D Avatar */}
-          <div className="aspect-square md:aspect-[4/5] bg-bg border border-ghost rounded-2xl overflow-hidden relative reveal shadow-sm">
+          <div className="w-full max-w-sm mx-auto lg:max-w-none aspect-[3/4] sm:aspect-square md:aspect-[4/5] bg-bg border border-ghost rounded-2xl overflow-hidden relative reveal shadow-sm">
             <AvatarCanvas className="w-full h-full" />
-            <div className="absolute bottom-8 left-0 w-full text-center font-sans font-bold text-base text-ink tracking-wide pointer-events-none">
-              Emmanuel Garcia Sumargo
-            </div>
-            <div className="absolute bottom-3 left-0 w-full text-center font-mono text-[10px] uppercase text-mid tracking-[0.15em] pointer-events-none">
-              ← Move mouse · Hover to wave · Click to spin →
+            {/* Bottom overlay — gradient ensures text always readable */}
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-white/95 via-white/70 to-transparent pt-8 pb-4 px-3 flex flex-col items-center gap-0.5 pointer-events-none">
+              <div className="font-sans font-bold text-sm text-ink tracking-wide text-center leading-tight">
+                Emmanuel Garcia Sumargo
+              </div>
+              <div className="font-mono text-[8px] sm:text-[10px] uppercase text-mid tracking-[0.12em] text-center px-1">
+                ← Move mouse · Hover to wave · Click to spin →
+              </div>
             </div>
           </div>
           
@@ -50,8 +53,8 @@ export default function About() {
             {/* Interactive Value Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-ghost mt-12 border-t border-b border-ghost shadow-sm rounded-xl overflow-hidden">
               {/* Item 1 */}
-              <div className="bg-white p-8 hover:bg-bg transition-colors group relative overflow-hidden">
-                <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-20 transition-opacity duration-300">
+              <div className="bg-white p-8 hover:bg-bg active:bg-bg lg:hover:bg-bg transition-colors group relative overflow-hidden">
+                <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-20 group-active:opacity-20 transition-opacity duration-300">
                   <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="text-accent">
                     <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
                   </svg>
@@ -64,8 +67,8 @@ export default function About() {
               </div>
               
               {/* Item 2 */}
-              <div className="bg-white p-8 hover:bg-bg transition-colors group relative overflow-hidden">
-                <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-20 transition-opacity duration-300">
+              <div className="bg-white p-8 hover:bg-bg active:bg-bg lg:hover:bg-bg transition-colors group relative overflow-hidden">
+                <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-20 group-active:opacity-20 transition-opacity duration-300">
                   <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="text-accent">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                   </svg>
@@ -78,8 +81,8 @@ export default function About() {
               </div>
 
               {/* Item 3 */}
-              <div className="bg-white p-8 hover:bg-bg transition-colors group relative overflow-hidden">
-                <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-20 transition-opacity duration-300">
+              <div className="bg-white p-8 hover:bg-bg active:bg-bg lg:hover:bg-bg transition-colors group relative overflow-hidden">
+                <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-20 group-active:opacity-20 transition-opacity duration-300">
                   <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="text-accent">
                     <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
                     <line x1="9" y1="3" x2="9" y2="21" />
@@ -93,8 +96,8 @@ export default function About() {
               </div>
 
               {/* Item 4 */}
-              <div className="bg-white p-8 hover:bg-bg transition-colors group relative overflow-hidden">
-                <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-20 transition-opacity duration-300">
+              <div className="bg-white p-8 hover:bg-bg active:bg-bg lg:hover:bg-bg transition-colors group relative overflow-hidden">
+                <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-20 group-active:opacity-20 transition-opacity duration-300">
                   <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="text-accent">
                     <circle cx="18" cy="5" r="3" />
                     <circle cx="6" cy="12" r="3" />

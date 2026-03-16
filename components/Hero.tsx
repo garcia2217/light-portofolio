@@ -105,95 +105,117 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="min-h-screen relative flex items-center pt-24 pb-12 overflow-hidden opacity-0 animate-hero-in"
+      className="min-h-[100svh] relative flex flex-col opacity-0 animate-hero-in"
     >
-      <div className="container mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        {/* Left Content */}
-        <div className="flex flex-col justify-center max-w-2xl relative">
-          <p className="font-mono text-xs md:text-sm font-semibold tracking-widest uppercase text-accent mb-6 flex items-center gap-3 before:content-[''] before:w-8 before:h-[2px] before:bg-accent">
-            Available for opportunities
-          </p>
-          <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[5rem] font-bold leading-[1.05] tracking-tight text-ink mb-6">
-            Building systems
-            <br />
-            that {" "}
-            <em className="italic font-light text-accent pr-2">actually</em>
-            <br className="hidden sm:block" />
-            scale.
-          </h1>
-          <p className="font-mono text-base md:text-lg font-light text-mid min-h-[2.5rem] mb-10 flex items-center gap-2">
-            <span id="typed-text" ref={typedTextRef} className="text-ink font-medium"></span>
-            <span className="inline-block w-[3px] h-[1.2em] bg-accent animate-blink rounded-sm"></span>
-          </p>
+      {/* Dynamic top spacer — clears the fixed nav on all screen sizes */}
+      <div className="h-20 sm:h-32 md:h-40 shrink-0" />
+      <div className="flex-1 flex flex-col justify-center">
+        <div className="container mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Left Content */}
+          <div className="flex flex-col justify-center max-w-2xl relative">
+            <p className="font-mono text-xs md:text-sm font-semibold tracking-widest uppercase text-accent mb-6 flex items-center gap-3 before:content-[''] before:w-8 before:h-[2px] before:bg-accent">
+              Available for opportunities
+            </p>
+            <h1 className="font-serif text-[2.6rem] sm:text-6xl md:text-7xl lg:text-[5rem] font-bold leading-[1.05] tracking-tight text-ink mb-6">
+              Building systems
+              <br />
+              that{" "}
+              <em className="italic font-light text-accent pr-2">actually</em>
+              <br className="hidden sm:block" />
+              scale.
+            </h1>
+            <p className="font-mono text-base md:text-lg font-light text-mid min-h-[2.5rem] mb-10 flex items-center gap-2">
+              <span
+                id="typed-text"
+                ref={typedTextRef}
+                className="text-ink font-medium"
+              ></span>
+              <span className="inline-block w-[3px] h-[1.2em] bg-accent animate-blink rounded-sm"></span>
+            </p>
 
-          <div className="flex items-center gap-6 flex-wrap">
-            <div className="inline-block" ref={btnWrapRef}>
-              <button
-                onClick={handleScroll}
-                className="relative inline-flex items-center gap-2 bg-ink text-white font-sans text-sm md:text-base font-medium py-4 px-8 border-none rounded shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group"
+            <div className="flex items-center gap-6 flex-wrap pb-8 md:pb-0">
+              <div className="inline-block" ref={btnWrapRef}>
+                <button
+                  onClick={handleScroll}
+                  className="relative inline-flex items-center gap-2 bg-ink text-white font-sans text-sm md:text-base font-medium py-4 px-8 border-none rounded shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group"
+                >
+                  <div className="absolute inset-0 bg-accent scale-x-0 origin-left transition-transform duration-500 ease-out group-hover:scale-x-100 z-0"></div>
+                  <span className="relative z-10 transition-transform duration-300 group-hover:translate-x-1">
+                    View my work &darr;
+                  </span>
+                </button>
+              </div>
+              <a
+                href="#contact"
+                className="text-base font-medium text-mid pb-1 relative group transition-colors hover:text-ink inline-block"
               >
-                <div className="absolute inset-0 bg-accent scale-x-0 origin-left transition-transform duration-500 ease-out group-hover:scale-x-100 z-0"></div>
-                <span className="relative z-10 transition-transform duration-300 group-hover:translate-x-1">
-                  View my work &darr;
-                </span>
-              </button>
+                Let&apos;s talk &rarr;
+                <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-ink scale-x-0 origin-right transition-transform duration-300 group-hover:scale-x-100 group-hover:origin-left"></span>
+              </a>
             </div>
-            <a
-              href="#contact"
-              className="text-base font-medium text-mid pb-1 relative group transition-colors hover:text-ink inline-block"
-            >
-              Let&apos;s talk &rarr;
-              <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-ink scale-x-0 origin-right transition-transform duration-300 group-hover:scale-x-100 group-hover:origin-left"></span>
-            </a>
           </div>
-        </div>
 
-        {/* Right Content / Visuals */}
-        <div className="hidden lg:flex relative h-full min-h-[500px] w-full items-center justify-center">
-          {/* Background Grid Pattern */}
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]"></div>
-          
-          {/* Animated Blob */}
-          <div className="absolute w-[400px] h-[400px] rounded-full bg-accent/10 blur-3xl animate-pulse-slow"></div>
+          {/* Right Content / Visuals */}
+          <div className="hidden lg:flex relative h-full min-h-[500px] w-full items-center justify-center overflow-hidden">
+            {/* Background Grid Pattern */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]"></div>
 
-          {/* Floating Stat Cards (Glassmorphic + Count-Up) */}
-          <div className="relative w-full max-w-md h-[450px]">
-            <div className="absolute bottom-10 left-0 bg-white/70 backdrop-blur-xl border border-white p-6 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.06)] ring-1 ring-black/5 transition-transform hover:-translate-y-2 duration-300">
-              <div className="font-serif text-4xl font-bold text-ink">
-                <span className="count-up" data-target="4" data-suffix="+">0</span>
-              </div>
-              <div className="font-mono text-xs font-semibold text-mid tracking-widest uppercase mt-2">
-                Years Building
-              </div>
-            </div>
+            {/* Animated Blob */}
+            <div className="absolute w-[400px] h-[400px] rounded-full bg-accent/10 blur-3xl animate-pulse-slow"></div>
 
-            <div className="absolute top-10 right-0 bg-white/70 backdrop-blur-xl border border-white p-6 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.06)] ring-1 ring-black/5 transition-transform hover:-translate-y-2 duration-300 delay-100">
-              <div className="font-serif text-4xl font-bold text-ink">
-                <span className="count-up" data-target="18" data-suffix="+">0</span>
+            {/* Floating Stat Cards (Glassmorphic + Count-Up) */}
+            <div className="relative w-full max-w-md h-[450px]">
+              <div className="absolute bottom-10 left-0 bg-white/95 backdrop-blur-xl border border-white p-6 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.06)] ring-1 ring-black/5 transition-transform hover:-translate-y-2 duration-300">
+                <div className="font-serif text-4xl font-bold text-ink">
+                  <span className="count-up" data-target="4" data-suffix="+">
+                    0
+                  </span>
+                </div>
+                <div className="font-mono text-xs font-semibold text-mid tracking-widest uppercase mt-2">
+                  Years Building
+                </div>
               </div>
-              <div className="font-mono text-xs font-semibold text-mid tracking-widest uppercase mt-2">
-                Projects Shipped
-              </div>
-            </div>
 
-            <div className="absolute bottom-24 right-10 bg-white/70 backdrop-blur-xl border border-white p-6 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.06)] ring-1 ring-black/5 transition-transform hover:-translate-y-2 duration-300 delay-200">
-              <div className="font-serif text-4xl font-bold text-ink">
-                <span className="count-up" data-target="99" data-suffix="%">0</span>
+              <div className="absolute top-10 right-0 bg-white/95 backdrop-blur-xl border border-white p-6 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.06)] ring-1 ring-black/5 transition-transform hover:-translate-y-2 duration-300 delay-100">
+                <div className="font-serif text-4xl font-bold text-ink">
+                  <span className="count-up" data-target="18" data-suffix="+">
+                    0
+                  </span>
+                </div>
+                <div className="font-mono text-xs font-semibold text-mid tracking-widest uppercase mt-2">
+                  Projects Shipped
+                </div>
               </div>
-              <div className="font-mono text-xs font-semibold text-mid tracking-widest uppercase mt-2">
-                Uptime Maintained
+
+              <div className="absolute bottom-24 right-10 bg-white/95 backdrop-blur-xl border border-white p-6 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.06)] ring-1 ring-black/5 transition-transform hover:-translate-y-2 duration-300 delay-200">
+                <div className="font-serif text-4xl font-bold text-ink">
+                  <span className="count-up" data-target="99" data-suffix="%">
+                    0
+                  </span>
+                </div>
+                <div className="font-mono text-xs font-semibold text-mid tracking-widest uppercase mt-2">
+                  Uptime Maintained
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50 hover:opacity-100 transition-opacity cursor-pointer animate-bounce">
+
+      {/* Scroll Indicator — in flow, shrink-0 so flex doesn't crush it */}
+      <div
+        className="shrink-0 flex flex-col items-center gap-2 opacity-50 hover:opacity-100 transition-opacity cursor-pointer animate-bounce"
+        style={{
+          paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 3rem)",
+          marginBottom: "0.5rem",
+        }}
+      >
         <div className="w-[20px] h-[32px] border-2 border-mid rounded-full relative flex justify-center">
           <div className="w-[2px] h-[6px] bg-accent rounded-full mt-2 animate-pulse"></div>
         </div>
-        <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-mid">Scroll</span>
+        <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-mid">
+          Scroll
+        </span>
       </div>
     </section>
   );

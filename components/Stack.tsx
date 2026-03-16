@@ -57,7 +57,7 @@ export default function Stack() {
   ];
 
   return (
-    <section id="stack" className="bg-bg py-24 md:py-32">
+    <section id="stack" className="bg-bg min-h-[100dvh] py-16 md:py-24 flex flex-col justify-center">
       <div className="container mx-auto px-6 md:px-12 max-w-7xl">
         <div className="font-mono text-sm font-semibold tracking-widest uppercase text-mid mb-4 flex items-center gap-3 before:content-[''] before:w-8 before:h-[2px] before:bg-accent reveal">
           02. The Toolkit
@@ -73,14 +73,14 @@ export default function Stack() {
           {groups.map((group, i) => (
             <div
               key={i}
-              className="bg-white border border-ghost rounded-2xl p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:border-accent/40 reveal relative overflow-hidden group/card"
+              className="bg-white border border-ghost rounded-2xl p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:border-accent/40 active:shadow-xl active:-translate-y-1 active:border-accent/40 reveal relative overflow-hidden group/card"
               style={{ transitionDelay: `${i * 100}ms` }}
             >
               {/* Decorative top-right corner background */}
-              <div className="absolute -top-10 -right-10 w-32 h-32 bg-ghost/30 rounded-full blur-2xl group-hover/card:bg-accent/10 transition-colors duration-500"></div>
+              <div className="absolute -top-10 -right-10 w-32 h-32 bg-ghost/30 rounded-full blur-2xl group-hover/card:bg-accent/10 group-active/card:bg-accent/10 transition-colors duration-500"></div>
               
               <div className="text-sm font-bold tracking-widest uppercase text-ink mb-6 flex items-center gap-3 relative z-10">
-                <div className="p-2 bg-bg border border-ghost rounded-lg group-hover/card:border-accent/30 transition-colors">
+                <div className="p-2 bg-bg border border-ghost rounded-lg group-hover/card:border-accent/30 group-active/card:border-accent/30 transition-colors">
                   {group.icon}
                 </div>
                 {group.title}
